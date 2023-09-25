@@ -247,16 +247,6 @@ void ALyraCharacter::PossessedBy(AController* NewController)
 }
 
 
-
-	// Grab the current team ID and listen for future changes
-	if (ILyraTeamAgentInterface* ControllerAsTeamProvider = Cast<ILyraTeamAgentInterface>(NewController))
-	{
-		MyTeamID = ControllerAsTeamProvider->GetGenericTeamId();
-		ControllerAsTeamProvider->GetTeamChangedDelegateChecked().AddDynamic(this, &ThisClass::OnControllerChangedTeam);
-	}
-	ConditionalBroadcastTeamChanged(this, OldTeamID, MyTeamID);
-}
-
 void ALyraCharacter::UnPossessed()
 {
 	AController* const OldController = Controller;
